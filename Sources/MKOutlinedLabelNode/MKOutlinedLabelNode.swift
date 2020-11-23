@@ -4,7 +4,7 @@
 //  Created by Mario Klaver on 13-8-2015.
 //  Copyright (c) 2015 Endpoint ICT. All rights reserved.
 //
-
+#if canImport(UIKit)
 import UIKit
 import SpriteKit
 
@@ -74,8 +74,11 @@ class MKOutlinedLabelNode: SKLabelNode {
     }
     
     private func createBorderPathForText() -> CGPath? {
+        guard let fontName = self.fontName as CFString? else {
+            fatalError()
+        }
         let chars = getTextAsCharArray()
-        let borderFont = CTFontCreateWithName(self.fontName as CFString?, self.fontSize, nil)
+        let borderFont = CTFontCreateWithName(fontName, self.fontSize, nil)
         
         var glyphs = Array<CGGlyph>(repeating: 0, count: chars.count)
         let gotGlyphs = CTFontGetGlyphsForCharacters(borderFont, chars, &glyphs, chars.count)
@@ -114,3 +117,4 @@ class MKOutlinedLabelNode: SKLabelNode {
         }
     }
 }
+#endif
