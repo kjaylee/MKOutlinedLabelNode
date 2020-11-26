@@ -8,7 +8,7 @@
 import UIKit
 import SpriteKit
 
-class MKOutlinedLabelNode: SKLabelNode {
+public class MKOutlinedLabelNode: SKLabelNode {
     
     var borderColor: UIColor = UIColor.black
     var borderWidth: CGFloat = 7.0
